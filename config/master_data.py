@@ -281,3 +281,49 @@ National Heritage Trust"""
 
 #def generate_company_name(industry):
 
+# ==========================================
+# COMPANY TIERS
+# ==========================================
+
+COMPANY_TIERS = [
+    "Startup",
+    "Small",
+    "Medium",
+    "Large",
+    "Enterprise",
+    "Fortune"
+]
+
+# ==========================================
+# COMPANY TIER DISTRIBUTION (%)
+# Must Sum to 100
+# ==========================================
+
+COMPANY_TIER_DISTRIBUTION = {
+    "Startup": 10,
+    "Small": 25,
+    "Medium": 35,
+    "Large": 20,
+    "Enterprise": 8,
+    "Fortune": 2
+}
+
+# ==========================================
+# REVENUE ALLOCATION INSIDE INDUSTRY RANGE
+# ==========================================
+
+COMPANY_TIER_REVENUE_RATIO = {
+
+    "Startup": (0.00, 0.08),
+
+    "Small": (0.08, 0.20),
+
+    "Medium": (0.20, 0.45),
+
+    "Large": (0.45, 0.70),
+
+    "Enterprise": (0.70, 0.90),
+
+    "Fortune": (0.90, 1.00)
+
+}

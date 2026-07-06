@@ -13,7 +13,7 @@ from config.project_config import *
 from config.master_data import *
 
 fake = Faker()
-
+np.random.seed(RANDOM_SEED)
 
 # ==========================================
 # COMPANY NAME GENERATOR
@@ -72,6 +72,50 @@ def generate_company_name(industry):
 
         return fake.company()
 
+# ==========================================
+# REVENUE GENERATOR
+# ==========================================
+
+def generate_revenue(industry):
+    """
+    Generate realistic annual revenue (in Crores)
+    based on industry.
+    """
+
+    min_rev, max_rev = REVENUE_RANGES[industry]
+
+    # Generate a lognormal value
+    value = np.random.lognormal(mean=2.5, sigma=0.8)
+
+    # Normalize to 0–1
+    value = value / 100
+
+    # Clamp to 1
+    value = min(value, 1)
+
+    # Scale to industry range
+    revenue = min_rev + value * (max_rev - min_rev)
+
+    return round(revenue, 2)
+
+
+# ==========================================
+# REVENUE TEST
+# ==========================================
+
+def test_revenue_generation():
+
+    print("\n===== REVENUE GENERATION TEST =====\n")
+
+    for industry in INDUSTRIES:
+
+        print(f"\n{industry}")
+
+        for _ in range(5):
+
+            revenue = generate_revenue(industry)
+
+            print(f"₹ {revenue} Cr")
 
 # ==========================================
 # TEST FUNCTION
@@ -112,6 +156,9 @@ def generate_companies():
 # ENTRY POINT
 # ==========================================
 
-if __name__ == "__main__":
+'''if __name__ == "__main__":
 
-    test_company_names()
+    test_company_names()'''
+
+if __name__ == "__main__":
+    test_revenue_generation()
